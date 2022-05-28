@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { url } from "../Utils/Url";
 import styles from "../Styles/Overview/Overview.module.scss";
 import EditTicket from "./EditTicket";
+import Swal from "sweetalert2";
 
 function Overview() {
   const [tickets, setTickets] = useState([]);
@@ -13,13 +14,20 @@ function Overview() {
   useEffect(() => {
     axios(`${url}tickets`)
       .then((res) => {
-        console.log(res.data);
         setTickets(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.response.data.message,
+        });
       });
   }, []);
+
+  useEffect(() => {
+    console.log(tickets);
+  }, [tickets]);
 
   const handleEdit = (ticket) => {
     setModal(ticket);
@@ -33,13 +41,16 @@ function Overview() {
           "x-access-token": localStorage.getItem("token"),
         },
       })
-      .then((res) => {
-        console.log(res);
-        setTickets(tickets.filter((ticket) => ticket.id !== id));
+      .then(() => {
+        setTickets(tickets.filter((ticket) => ticket._id !== id));
+        Swal.fire("Good job!", "You deleted the ticket", "success");
       })
       .catch((err) => {
-        console.log(err);
-        alert(`Your role is User and ${err.response.data.message}`);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.response.data.message,
+        });
       });
   };
 

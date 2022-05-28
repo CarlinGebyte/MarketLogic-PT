@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Field, Form, Formik } from "formik";
 import React from "react";
+import Swal from "sweetalert2";
 import * as Yup from "yup";
 import styles from "../Styles/Edit/Edit.module.scss";
 import { url } from "../Utils/Url";
@@ -13,13 +14,11 @@ const editSchema = Yup.object().shape({
 });
 
 const EditTicket = ({ modal, close }) => {
-  console.log(modal);
   const handleClose = () => {
     close(false);
   };
 
   const handleSubmit = (values) => {
-    console.log(values);
     axios
       .put(`${url}tickets/update/${modal._id}`, JSON.stringify(values), {
         headers: {
@@ -28,10 +27,14 @@ const EditTicket = ({ modal, close }) => {
         },
       })
       .then((res) => {
-        console.log(res);
+        Swal.fire("Good job!", "Edited correctly", "success");
       })
       .catch((err) => {
-        alert(`Your role: User and ` + err.response.data.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.response.data.message,
+        });
       });
   };
   return (

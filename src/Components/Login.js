@@ -6,6 +6,7 @@ import styles from "../Styles/LoginRegister/LogReg.module.scss";
 import axios from "axios";
 import { url } from "../Utils/Url";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -14,11 +15,9 @@ const loginSchema = Yup.object().shape({
     .required("Required"),
 });
 function Login() {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (values) => {
-    console.log(values);
     const send = JSON.stringify({
       email: values.email,
       password: values.password,
@@ -30,13 +29,19 @@ function Login() {
         },
       })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("role", res.data.userRole);
-        navigate("/MarketLogic-PT/Overview");
+        
+        setTimeout(() => {
+          navigate("/MarketLogic-PT/Overview");
+        }, 1000);
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.response.data.message,
+        });
       });
   };
   return (

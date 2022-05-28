@@ -4,6 +4,7 @@ import React from "react";
 import * as Yup from "yup";
 import { url } from "../Utils/Url";
 import styles from "../Styles/Add/Add.module.scss";
+import Swal from "sweetalert2";
 
 const addSchema = Yup.object().shape({
   description: Yup.string()
@@ -22,7 +23,6 @@ function Add() {
           initialValues={{ description: "", priority: "" }}
           validationSchema={addSchema}
           onSubmit={(values, { resetForm }) => {
-            console.log(values);
             axios
               .post(`${url}tickets/add`, JSON.stringify(values), {
                 headers: {
@@ -31,10 +31,14 @@ function Add() {
                 },
               })
               .then((res) => {
-                console.log(res);
+                Swal.fire("Good job!", "You created a ticket", "success");
               })
               .catch((err) => {
-                alert(`Your role: User and ` + err.response.data.message);
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: err.response.data.message,
+                });
               });
 
             resetForm();

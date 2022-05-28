@@ -6,6 +6,7 @@ import styles from "../Styles/LoginRegister/LogReg.module.scss";
 import axios from "axios";
 import { url } from "../Utils/Url";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const registerSchema = Yup.object().shape({
   username: Yup.string()
@@ -23,7 +24,6 @@ const registerSchema = Yup.object().shape({
 function Register() {
   const navigate = useNavigate();
   const handleSubmit = (values) => {
-    console.log(values);
     const send = {
       username: values.username,
       email: values.email,
@@ -35,12 +35,15 @@ function Register() {
           "Content-Type": "application/json",
         },
       })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         navigate("/MarketLogic-PT/login");
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.response.data.message,
+        });
       });
   };
 
@@ -50,11 +53,16 @@ function Register() {
         <div className={styles.auth_header}>
           <img className={styles.auth_header__logo} src={logo} alt="Logo" />
           <h1 className={styles.auth_header__title}>Dashboard Kit</h1>
-          <p>Enter your email and password below</p>
+          <p>Create your account</p>
         </div>
         <div className={styles.auth_body}>
           <Formik
-            initialValues={{ email: "", password: "", confirmPassword: "" }}
+            initialValues={{
+              username: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+            }}
             validationSchema={registerSchema}
             onSubmit={(values, { resetForm }) => {
               handleSubmit(values);
@@ -114,7 +122,7 @@ function Register() {
                 <div>
                   <Link to="/MarketLogic-PT/login">Have an account ?</Link>
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit">Register</button>
               </Form>
             )}
           </Formik>

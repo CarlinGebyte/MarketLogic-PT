@@ -9,7 +9,7 @@ function Menu() {
     <div className={styles.menu_container}>
       <div className={styles.menu}>
         <div className={styles.menu_header}>
-          <Link to="/">
+          <Link to="/MarketLogic-PT/">
             <img src={logo} alt="logo" />
           </Link>
           <p>Dashboard</p>
@@ -23,6 +23,9 @@ function Menu() {
               </li>
               <li>
                 <Link to="add">Add ticket</Link>
+              </li>
+              <li>
+                <Link to="/">LogOut</Link>
               </li>
             </ul>
           </nav>
