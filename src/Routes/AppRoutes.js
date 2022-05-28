@@ -13,7 +13,7 @@ function AppRoutes() {
     if (token) {
       setAuth(true);
     }
-  }, [setAuth]);
+  }, [auth]);
   return (
     <BrowserRouter>
       <Routes>
