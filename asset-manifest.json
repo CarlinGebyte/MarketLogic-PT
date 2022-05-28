@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/MarketLogic-PT/static/css/main.651b87e3.css",
-    "main.js": "/MarketLogic-PT/static/js/main.e2767fa4.js",
+    "main.js": "/MarketLogic-PT/static/js/main.890d9891.js",
     "static/js/787.d8a97708.chunk.js": "/MarketLogic-PT/static/js/787.d8a97708.chunk.js",
     "index.html": "/MarketLogic-PT/index.html",
     "main.651b87e3.css.map": "/MarketLogic-PT/static/css/main.651b87e3.css.map",
-    "main.e2767fa4.js.map": "/MarketLogic-PT/static/js/main.e2767fa4.js.map",
+    "main.890d9891.js.map": "/MarketLogic-PT/static/js/main.890d9891.js.map",
     "787.d8a97708.chunk.js.map": "/MarketLogic-PT/static/js/787.d8a97708.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.651b87e3.css",
-    "static/js/main.e2767fa4.js"
+    "static/js/main.890d9891.js"
   ]
 }
