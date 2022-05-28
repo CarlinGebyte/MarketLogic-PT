@@ -1,0 +1,67 @@
+.add {
+  position: relative;
+  left: 255px;
+  padding: 30px;
+  font-weight: bold;
+  width: 80.7%;
+  background-color: #e5e5e5;
+  min-height: 100vh;
+  .add_header {
+    margin-bottom: 30px;
+    font-size: 24px;
+  }
+  .add_form {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    .add_form_content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      label {
+        cursor: pointer;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      input,
+      select {
+        width: 100%;
+        height: 40px;
+        border-radius: 8px;
+        border: 1px solid #dfe0eb;
+        border: 1px solid #dfe0eb;
+        padding: 0 10px;
+        font-size: 16px;
+      }
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #3751ff;
+      background-color: #3751ff;
+      color: #fff;
+      cursor: pointer;
+      &:hover {
+        background-color: #fff;
+        color: #3751ff;
+        border: 1px solid #3751ff;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .add {
+    width: 73%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .add {
+    left: 0;
+    width: 100%;
+  }
+}
